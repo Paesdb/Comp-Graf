@@ -1,4 +1,4 @@
-
+package CG;
 //need lib jogamp
 import java.nio.FloatBuffer;
 

@@ -9,7 +9,7 @@ package forma;
  * @author jeano
  */
 public class cube extends Forma {
-
+    
     public cube() {
         this.nome = "Cube";
         this.Vertices = [-1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0];

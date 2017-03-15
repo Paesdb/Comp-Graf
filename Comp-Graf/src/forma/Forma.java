@@ -3,9 +3,6 @@ package forma;
 public class Forma {
    
     String nome;
-    float [] Vertices;
+    float [] Vertices = new float[50];
     
-    public Forma(){
-
-    }
 }

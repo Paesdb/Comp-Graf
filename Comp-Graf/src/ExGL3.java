@@ -25,56 +25,7 @@ public class ExGL3 implements GLEventListener {
     float vertexData[] = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
     
-    /* Multiplicação de matriz 4 x 4. a = a.b */
-    void matrizMult (float a[], float b[]) {
-        float result[] = new float[16];
-        int i, j, k;
-        for (i = 0; i < 4; ++i) {
-            for (j = 0; j < 4; ++j) {
-                result[j * 4 + i] = 0.0f;
-                for (k = 0; k < 4; k++) {
-                    result[j * 4 + i] += a[k * 4 + i] * b[j * 4 + k];
-                } 
-            }
-        }
-        System.arraycopy(result, 0, a, 0, 16);
-    }
     
-    /* Normalização em vec3 */
-    void norma(float a[]) {
-        float i = (float) Math.sqrt(a[0]*a[0] + a[1]*a[1] + a[2] * a[2]);
-        a[0] /= i;
-        a[1] /= i;
-        a[2] /= i;
-    }
-    
-    /* Criar matriz identidade em matrix n x n*/
-    void setIdentidade(float a[], int n) {
-        int i;
-        for (i = 0; i < n * n; i++)
-            a[i] = 0.0f;
-        for (i = 0; i < n; i++)
-            a[i + i * n] = 1.0f;
-    }
-    
-    /* Criar matriz de translação. mat é 4x4*/
-    void matrizTranslate (float[] mat, float x, float y, float z) {
-        setIdentidade(mat, 4);
-        mat[3] = x;
-        mat[7] = y;
-        mat[11] = z;
-    }
-
-    public void matrizRotate(float[] mat, float ang, float x, float y, float z) {
-        setIdentidade(mat, 4);
-    }
-    
-    public void matrizScale(float[] mat, float x, float y, float z) {
-        setIdentidade(mat, 4);
-        mat[0] = x;
-        mat[5] = y;
-        mat[10] = z;
-    }
     
     public void shape(GL3 gl) {
         
@@ -86,6 +37,7 @@ public class ExGL3 implements GLEventListener {
         gl.glClearColor(1f, 1f, 1f, 0f);
 
         createShaders(gl);
+        
 
         // Create and Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
         gl.glGenVertexArrays(1, vao, 0);

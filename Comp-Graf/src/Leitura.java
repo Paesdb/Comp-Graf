@@ -13,7 +13,7 @@ public class Leitura {
 
     }
 
-    public void proximoComando() {
+    public void next() {
         /* Selecionando o comando de acordo com a primeira palavra */
         switch (entrada.next()) { /* comando */
 
@@ -22,13 +22,13 @@ public class Leitura {
                 switch (entrada.next()) { /* shape */
 
                     case "cube":
-                        System.out.print("estou adicionando um cubo de nome ");
+                        
                         break;
                     case "sphere":
 
                         break;
                     case "cone":
-                        System.out.print("estou adicionando um cone de nome");
+                        
                         break;
                     case "torus":
 
@@ -50,9 +50,9 @@ public class Leitura {
                 /* Formato: add_light name1 floatX floatY floatZ (max. 10) */
                 name1 = entrada.next();
 
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "remove_light":
@@ -77,7 +77,7 @@ public class Leitura {
                         error = true;
                         break;
                 }
-                floatK = entrada.nextFloat();
+                floatK = Float.parseFloat(entrada.next());
 
                 break;
             case "reflection_off":
@@ -136,45 +136,50 @@ public class Leitura {
                 break;
             case "translate":
                 /* Formato: translate name1 float float float */
+                Matriz m = new Matriz();
+                float[] t = new float[16];
+                
                 name1 = entrada.next();
 
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
+                
+                m.translate(t, floatX, floatX, floatX);
 
                 break;
             case "scale":
                 /* Formato: scale name1 float float float */
                 name1 = entrada.next();
 
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "rotate":
                 /* Formato: rotate name1 float float float float */
                 name1 = entrada.next();
 
-                floatK = entrada.nextFloat(); /* floatK = angulo */
+                floatK = Float.parseFloat(entrada.next()); /* floatK = angulo */
 
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "lookat":
                 /* Formato: lookat float float float */
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "cam":
                 /* Formato: cam float float float */
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "color":
@@ -182,9 +187,9 @@ public class Leitura {
                 name1 = entrada.next();
 
                 /* floatX = R, floatY = G, floatZ = B */
-                floatX = entrada.nextFloat();
-                floatY = entrada.nextFloat();
-                floatZ = entrada.nextFloat();
+                floatX = Float.parseFloat(entrada.next());
+                floatY = Float.parseFloat(entrada.next());
+                floatZ = Float.parseFloat(entrada.next());
 
                 break;
             case "axis":

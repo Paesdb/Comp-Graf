@@ -1,22 +1,15 @@
-
-//need lib jogamp
 import java.nio.FloatBuffer;
 
-import javax.swing.JFrame;
 
 import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL3;
 import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLException;
-import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.awt.GLJPanel;
 import com.jogamp.opengl.util.GLBuffers;
 import com.jogamp.opengl.util.glsl.ShaderCode;
 import com.jogamp.opengl.util.glsl.ShaderProgram;
-import java.util.Scanner;
 
 public class ExGL3 implements GLEventListener {
 
@@ -29,11 +22,11 @@ public class ExGL3 implements GLEventListener {
 
     private float[] model = new float[16];
 
-    static float vertexData[] = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+    float vertexData[] = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
     
     /* Multiplicação de matriz 4 x 4. a = a.b */
-    static void matrizMult (float a[], float b[]) {
+    void matrizMult (float a[], float b[]) {
         float result[] = new float[16];
         int i, j, k;
         for (i = 0; i < 4; ++i) {
@@ -56,7 +49,7 @@ public class ExGL3 implements GLEventListener {
     }
     
     /* Criar matriz identidade em matrix n x n*/
-    static void setIdentidade(float a[], int n) {
+    void setIdentidade(float a[], int n) {
         int i;
         for (i = 0; i < n * n; i++)
             a[i] = 0.0f;
@@ -65,7 +58,7 @@ public class ExGL3 implements GLEventListener {
     }
     
     /* Criar matriz de translação. mat é 4x4*/
-    static void matrizTranslate (float[] mat, float x, float y, float z) {
+    void matrizTranslate (float[] mat, float x, float y, float z) {
         setIdentidade(mat, 4);
         mat[3] = x;
         mat[7] = y;
@@ -76,7 +69,7 @@ public class ExGL3 implements GLEventListener {
         setIdentidade(mat, 4);
     }
     
-    static public void matrizScale(float[] mat, float x, float y, float z) {
+    public void matrizScale(float[] mat, float x, float y, float z) {
         setIdentidade(mat, 4);
         mat[0] = x;
         mat[5] = y;
@@ -139,7 +132,7 @@ public class ExGL3 implements GLEventListener {
     @Override
     public void display(GLAutoDrawable canvas) {
         GL3 gl = canvas.getGL().getGL3();
-		//gl.glClear(GL.GL_DEPTH_BUFFER_BIT | GL.GL_COLOR_BUFFER_BIT);
+	gl.glClear(GL.GL_DEPTH_BUFFER_BIT); // GL.GL_COLOR_BUFFER_BIT
 
         // load everthing back
         gl.glUseProgram(shaderProgram.program());
@@ -173,28 +166,5 @@ public class ExGL3 implements GLEventListener {
         gl3.glDeleteShader(fragmentShader.id());
     }
 
-    public static void main(String[] args) {
-        JFrame app = new JFrame("Minimal OpenGL 3 with shader");
-        app.setSize(640, 480);
-        // this.setResizable(false);
-        app.setLocationRelativeTo(null);
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        GLProfile profile = GLProfile.get(GLProfile.GL3);
-
-        GLJPanel canvas = new GLJPanel(new GLCapabilities(profile));
-        canvas.addGLEventListener(new ExGL3());
-        app.getContentPane().add(canvas);
-
-        canvas.requestFocusInWindow();
-        app.setVisible(true);
-        
-        Scanner entrada = new Scanner(System.in);
-        
-        vertexData[0] = entrada.nextFloat();
-        
-        app.repaint();
-        
-        System.out.println(vertexData[0]);
-    }
+    
 }

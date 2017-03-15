@@ -23,7 +23,7 @@ public class Matriz {
     
     /* Criar matriz de translação. mat é 4x4*/
     public void translate (float[] mat, float x, float y, float z) {
-        setIdentidade(mat, 4);
+        //setIdentidade(mat, 4);
         mat[3] = x;
         mat[7] = y;
         mat[11] = z;
@@ -34,9 +34,15 @@ public class Matriz {
     }
     
     public void scale(float[] mat, float x, float y, float z) {
-        setIdentidade(mat, 4);
+        //setIdentidade(mat, 4);
         mat[0] = x;
         mat[5] = y;
         mat[10] = z;
     }
+    
+    public void print(float[] mat) {
+        for(int i = 0; i < 4; i++)
+            System.out.println(mat[i*4] + " " + mat[i*4+1] + " " + mat[i*4+2] +  " " + mat[i*4+3]);
+    }
+    
 }

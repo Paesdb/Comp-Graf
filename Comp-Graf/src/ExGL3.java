@@ -23,7 +23,9 @@ public class ExGL3 implements GLEventListener {
     private Matriz m = new Matriz();
     
     private float[] model = new float[16];
-    private int modelLoc;
+    private float[] view = new float[16];
+    private float[] proj = new float[16];
+    private int modelLoc, viewLoc, projLoc;
 
     float vertexData[] = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
@@ -66,8 +68,17 @@ public class ExGL3 implements GLEventListener {
         // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
         gl.glBindVertexArray(0);
         
+        m.setIdentidade(model, 4);
+        m.setIdentidade(view, 4);
+        m.setIdentidade(proj, 4);
+        
+        gl.glUseProgram(shaderProgram.program());
         modelLoc = gl.glGetUniformLocation(shaderProgram.program(), "model");
-        gl.glUniformMatrix4fv(modelLoc, 1, false, model, 0);
+        viewLoc = gl.glGetUniformLocation(shaderProgram.program(), "view");
+        projLoc = gl.glGetUniformLocation(shaderProgram.program(), "proj");
+        gl.glUniformMatrix4fv(modelLoc, 1, true, model, 0);
+        gl.glUniformMatrix4fv(viewLoc, 1, true, view, 0);
+        gl.glUniformMatrix4fv(projLoc, 1, true, proj, 0);
         
     }
 
@@ -102,6 +113,7 @@ public class ExGL3 implements GLEventListener {
 
         // clean things up
         gl.glUseProgram(0);
+        
     }
 
     @Override

@@ -8,10 +8,8 @@ import javax.swing.JFrame;
 
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        /*
         ExGL3 tela = new ExGL3();
         JFrame app = new JFrame("Minimal OpenGL 3 with shader");
         app.setSize(640, 480);
@@ -27,13 +25,10 @@ public class Main {
 
         canvas.requestFocusInWindow();
         app.setVisible(true);
+        */
         
-        Scanner entrada = new Scanner(System.in);
+        Leitura comando = new Leitura();
         
-        tela.vertexData[0] = entrada.nextFloat();
-        
-        canvas.repaint();
-        app.getContentPane().add(canvas);
 
         
     } 

@@ -20,7 +20,10 @@ public class ExGL3 implements GLEventListener {
     private int[] vao = new int[1];
     private int[] vbo = new int[1];
 
+    private Matriz m = new Matriz();
+    
     private float[] model = new float[16];
+    private int modelLoc;
 
     float vertexData[] = {-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
@@ -38,7 +41,7 @@ public class ExGL3 implements GLEventListener {
 
         createShaders(gl);
         
-
+        
         // Create and Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
         gl.glGenVertexArrays(1, vao, 0);
         gl.glBindVertexArray(vao[0]);
@@ -62,6 +65,10 @@ public class ExGL3 implements GLEventListener {
         gl.glBindBuffer(GL.GL_ARRAY_BUFFER, 0);
         // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
         gl.glBindVertexArray(0);
+        
+        modelLoc = gl.glGetUniformLocation(shaderProgram.program(), "model");
+        gl.glUniformMatrix4fv(modelLoc, 1, false, model, 0);
+        
     }
 
     private void createShaders(GL3 gl) {

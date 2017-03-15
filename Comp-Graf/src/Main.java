@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] args) {
-        /*
+        
         ExGL3 tela = new ExGL3();
         JFrame app = new JFrame("Minimal OpenGL 3 with shader");
         app.setSize(640, 480);
@@ -25,9 +25,9 @@ public class Main {
 
         canvas.requestFocusInWindow();
         app.setVisible(true);
-        */
         
-        Leitura comando = new Leitura();
+        
+        //Leitura comando = new Leitura();
         
 
         

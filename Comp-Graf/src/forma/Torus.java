@@ -1,4 +1,3 @@
-
 package forma;
 
 public class Torus extends Forma {

@@ -1,7 +1,6 @@
 
 package forma;
 
-
 public class Cube extends Forma {
     
     static float[] vertex = {   -1.000000f, -1.000000f,  1.000000f,

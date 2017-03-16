@@ -17,12 +17,15 @@ public class Cube extends Forma {
                                    0.0000f,    0.0000f,    1.0000f,
                                    0.0000f,   -1.0000f,    0.0000f,
                                    0.0000f,    1.0000f,    0.0000f};
+    public static float[] getVertex;
 
     public Cube(String name) {
         this.nome = name;
-        
-        
-        
+    }
+    
+    public float[] getVertex()
+    {
+        return Cube.vertex;
     }
    //{-1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, -1.0f}
 }
